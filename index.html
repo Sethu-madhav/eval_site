@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Classification Tool</title>
+
+    <!-- Link external stylesheet & script -->
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Image Classification Tool</h1>
+
+      <!-- New: let user pick a whole folder of images -->
+      <label for="folderInput" style="display: block; margin: 1rem 0;">
+        📁 Upload folder of images:
+      </label>
+      <input
+        type="file"
+        id="folderInput"
+        webkitdirectory
+        directory
+        multiple
+        accept="image/*"
+      />
+
+      <div id="progress"></div>
+      <img id="image" src="" alt="Image to classify" />
+
+      <div class="btn-group">
+        <button class="primary" data-label="real_photo">Real Photo</button>
+        <button class="secondary" data-label="edited_photo">Edited Photo</button>
+        <button class="success" data-label="AI_generated">AI Generated</button>
+      </div>
+
+      <button id="downloadBtn">Download CSV</button>
+    </div>
+  </body>
+</html>
