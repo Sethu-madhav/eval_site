@@ -68,7 +68,7 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
     return;
   }
 
-  const header = "image,real_photo,edited_photo,AI_generated\n";
+  const header = "image,real_photo,edited_image,AI_generated\n";
   const rows = results.map((r) => {
     const real = r.label === "real_photo"      ? "Yes" : "No";
     const edited = r.label === "edited_image"  ? "Yes" : "No";
