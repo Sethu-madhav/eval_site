@@ -4,37 +4,60 @@
     <meta charset="UTF-8" />
     <title>Image Classification Tool</title>
 
-    <!-- Link external stylesheet & script -->
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-    <div id="container">
-      <h1>Image Classification Tool</h1>
-
-      <!-- New: let user pick a whole folder of images -->
-      <label for="folderInput" style="display: block; margin: 1rem 0;">
-        📁 Upload folder of images:
-      </label>
-      <input
-        type="file"
-        id="folderInput"
-        webkitdirectory
-        directory
-        multiple
-        accept="image/*"
-      />
-
-      <div id="progress"></div>
-      <img id="image" src="" alt="Image to classify" />
-
-      <div class="btn-group">
-        <button class="primary" data-label="real_photo">Real Photo</button>
-        <button class="secondary" data-label="edited_photo">Edited Photo</button>
-        <button class="success" data-label="AI_generated">AI Generated</button>
+    <div class="main-flex">
+      <div id="descriptions">
+        <h2>Instructions for labeling</h2>
+        <div class="desc-block">
+          <strong>Real Photo:</strong>
+          <div>
+            A real picture taken with a camera, though small edits like adding labels are okay. 
+            but the primary content must remain a real image without significant alterations.
+          </div>
+        </div>
+        <div class="desc-block">
+          <strong>Edited Image:</strong>
+          <div>
+            A photograph that has undergone human made digital edits many times or 
+            digital work made by humans like (graphs, tables, artwork).
+          </div>
+        </div>
+        <div class="desc-block">
+          <strong>AI Generated:</strong>
+          <div>
+            An image created entirely by artificial intelligence, not captured by a camera (from models like Midjourney or Stable Diffusion).
+          </div>
+        </div>
       </div>
+      <div id="container">
+        <h1>Image Classification Tool</h1>
 
-      <button id="downloadBtn">Download CSV</button>
+        <label for="folderInput" style="display: block; margin: 1rem 0;">
+          📁 Upload folder of images:
+        </label>
+        <input
+          type="file"
+          id="folderInput"
+          webkitdirectory
+          directory
+          multiple
+          accept="image/*"
+        />
+
+        <div id="progress"></div>
+        <img id="image" src="" alt="Image to classify" />
+
+        <div class="btn-group">
+          <button class="primary" data-label="real_photo">Real Photo</button>
+          <button class="secondary" data-label="edited_image">Edited Image</button>
+          <button class="success" data-label="AI_generated">AI Generated</button>
+        </div>
+
+        <button id="downloadBtn">Download CSV</button>
+      </div>
     </div>
   </body>
 </html>

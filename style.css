@@ -1,21 +1,19 @@
 body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
       "Noto Sans", sans-serif;
-    background: #f9f9f9;
+    background: #ffe6c3;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* changed from flex-start to center */
     min-height: 100vh;
   }
   
   
   #container {
-    max-width: 840px;
+    max-width: 1000px;
     width: 100%;
-    padding: 2rem 1rem 4rem;
+    padding: 1rem 1rem 1rem;
     text-align: center;
+    margin: 0 auto;
   }
   
   h1 {
@@ -24,13 +22,12 @@ body {
   }
   
   #image {
-    /* fluid width but never smaller or larger than these limits */
     width: 100%;
     height: 100%;
-    min-width: 400px;  /* prevent images from getting too small */
-    max-width: 600px;  /* prevent images from growing too large */
-    max-height: 800px;
-    border-radius: 0.75rem;
+    min-width: 400px;  
+    max-width: 450px;  
+    max-height: 450px;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   }
   
@@ -56,7 +53,6 @@ body {
     transform: translateY(-1px);
   }
   
-  /* color variations */
   .primary {
     background: #4f46e5;
     color: #ffffff;
@@ -83,6 +79,49 @@ body {
   #progress {
     margin-top: 0.5rem;
     font-weight: 600;
+  }
+  
+  .main-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    max-width: 1200px;
+    background: #ffe6c3;
+    padding: 0;
+  }
+  
+  #descriptions {
+    flex: 0 0 350px;
+    text-align: left;
+    margin-left: -3.5rem;
+    margin-top: 2.5rem;
+    font-size: 1rem;
+  }
+  
+  #descriptions h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #4f46e5;
+    letter-spacing: 0.01em;
+  }
+  
+  .desc-block {
+    margin-bottom: 1.2rem;
+  }
+  
+  .desc-block strong {
+    display: block;
+    margin-bottom: 0.2rem;
+    color: #222;
+  }
+  
+  .desc-block div {
+    font-size: 0.98rem;
+    color: #444;
+    line-height: 1.4;
   }
   
   

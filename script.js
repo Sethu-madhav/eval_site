@@ -1,18 +1,9 @@
-/* === Configuration === */
-// ✂ remove your old static list:
-// const IMAGE_PATH = "images/";
-// const FILENAME_LIST = [ /* … */ ];
-// const TOTAL_IMAGES  = FILENAME_LIST.length;
-
-// ✂ instead, track a dynamic array from the file-picker:
 let filesArray    = [];
 let TOTAL_IMAGES  = 0;
 
-/* === Internal state === */
 let currentIndex = 0;
 const results    = [];
 
-/* === Utility functions === */
 const updateProgress = () => {
   const progress = document.getElementById("progress");
   progress.textContent =
@@ -22,11 +13,9 @@ const updateProgress = () => {
 };
 
 const updateImage = () => {
-  // nothing to show until user picks a folder
   if (filesArray.length === 0) return;
 
   if (currentIndex >= TOTAL_IMAGES) {
-    // All done – clean up UI
     document.getElementById("image").style.display       = "none";
     document.querySelector(".btn-group").style.display   = "none";
     document.getElementById("progress").textContent      = "All images classified ✔";
@@ -34,19 +23,16 @@ const updateImage = () => {
   }
 
   const imgEl = document.getElementById("image");
-  // create a blob URL for the chosen file
   const file = filesArray[currentIndex];
   imgEl.src = URL.createObjectURL(file);
 
   updateProgress();
 };
 
-/* === Init – now waits for folder selection === */
 window.addEventListener("DOMContentLoaded", () => {
-  // no-op until user picks a folder
 });
 
-/* === Folder upload handling === */
+
 document.getElementById("folderInput").addEventListener("change", (e) => {
   // grab only image files, sort by name
   filesArray = Array.from(e.target.files)
@@ -55,40 +41,37 @@ document.getElementById("folderInput").addEventListener("change", (e) => {
 
   TOTAL_IMAGES = filesArray.length;
   currentIndex = 0;
-  results.length = 0;            // clear old results
+  results.length = 0;            
 
-  // show image + buttons now that we have data
   document.getElementById("image").style.display = "";
   document.querySelector(".btn-group").style.display = "";
 
   updateImage();
 });
 
-/* === Classification clicks === */
+
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("button[data-label]");
   if (!btn || filesArray.length === 0) return;
 
   const label    = btn.dataset.label;
-  const filename = filesArray[currentIndex].name; // take real name
+  const filename = filesArray[currentIndex].name; 
   results.push({ filename, label });
 
   currentIndex += 1;
   updateImage();
 });
 
-/* === CSV download === */
 document.getElementById("downloadBtn").addEventListener("click", () => {
   if (results.length === 0) {
     alert("No classifications yet!");
     return;
   }
 
-  // Build CSV with separate columns for each label category
   const header = "image,real_photo,edited_photo,AI_generated\n";
   const rows = results.map((r) => {
     const real = r.label === "real_photo"      ? "Yes" : "No";
-    const edited = r.label === "edited_photo"  ? "Yes" : "No";
+    const edited = r.label === "edited_image"  ? "Yes" : "No";
     const aiGen = r.label === "AI_generated"   ? "Yes" : "No";
     return `${r.filename},${real},${edited},${aiGen}`;
   }).join("\n");
